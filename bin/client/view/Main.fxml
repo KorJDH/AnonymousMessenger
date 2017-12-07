@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="742.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.MainController">
+   <children>
+      <VBox prefHeight="742.0" prefWidth="392.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="155.0" prefWidth="392.0" style="-fx-background-color: #39A67F;">
+               <children>
+                  <Label layoutX="64.0" layoutY="24.0" text="Anonymous" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana Bold" size="40.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="75.0" text="Messenger" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana Bold" size="40.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <ListView fx:id="listV_User" onMouseClicked="#listV_MouseClicked" prefHeight="587.0" prefWidth="392.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
