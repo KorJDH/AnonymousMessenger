@@ -16,7 +16,7 @@ enum SpeechDirection{
 
 /**
  * @author	: 정동희
- * @date		: 2017. 11. 28.
+ * @date		: 2017. 11. 25.
  * @desc 		: 채팅창 내의 말풍선
  */
 
@@ -29,6 +29,8 @@ public class SpeechBox extends HBox{
     private SpeechDirection direction;
 
     private Label displayedText;
+    
+    /** String 을 SVGpath data로 파싱하여 만드는 간단한 Shape */
     private SVGPath directionIndicator;
 
     public SpeechBox(String message, int direction){
@@ -42,17 +44,19 @@ public class SpeechBox extends HBox{
         initialiseDefaults();
         setupElements();
     }
-
+    
+    /** Sender, Receiver의 말풍선 배경 사각형 세팅  */
     private void initialiseDefaults(){
         DEFAULT_SENDER_BACKGROUND = new Background(
                 new BackgroundFill(DEFAULT_SENDER_COLOR, new CornerRadii(5,0,5,5,false), Insets.EMPTY));
         DEFAULT_RECEIVER_BACKGROUND = new Background(
                 new BackgroundFill(DEFAULT_RECEIVER_COLOR, new CornerRadii(0,5,5,5,false), Insets.EMPTY));
     }
-
+    
+    /** 메시지 내용 라벨링 */
     private void setupElements(){
         displayedText = new Label(message);
-        displayedText.setPadding(new Insets(5));
+        displayedText.setPadding(new Insets(5));	//Top,Right,Bottom,Left offsets 을 5로 세팅
         displayedText.setWrapText(true);
         directionIndicator = new SVGPath();
 
@@ -64,9 +68,11 @@ public class SpeechBox extends HBox{
         }
     }
 
+    /** 라벨 배경색 지정 및 SVGPath로 도형 생성 및 말풍선 완성 */
     private void configureForSender(){
         displayedText.setBackground(DEFAULT_SENDER_BACKGROUND);
         displayedText.setAlignment(Pos.CENTER_RIGHT);
+        
         directionIndicator.setContent("M10 0 L0 10 L0 0 Z");
         directionIndicator.setFill(DEFAULT_SENDER_COLOR);
         

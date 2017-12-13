@@ -8,7 +8,6 @@ package shared;
  * 						모든 JSONKey 들은 이 클래스에 기입한다.
  */
 public class JsonKeyList {
-	
 	/**  
 	 * List : (서버 -> 클라) 접속한 모든 유저 ID 전달할 때 사용. used by [ ServerBackground, ClientBackground ]
 	 * LoginACK : (클라 -> 서버) 로그인한 유저가 서버에 자신의 로그인을 알릴때 사용. used by [ ClientBackground ]

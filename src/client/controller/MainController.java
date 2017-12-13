@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -15,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import client.ClientMain;
+import client.ChatView;
 import client.MyUser;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -23,7 +23,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -39,7 +38,7 @@ import shared.JsonKeyList;
 
 /**
  * @author	: 정동희     
- * @date		: 2017. 11. 22.
+ * @date		: 2017. 11. 21.
  * @desc		: Main.fxml의 Controller 클래스
  * 					  친구 목록을 ListView로 관리
  * 					  채팅창 생성[ chat.fxml +  ChatController ]
@@ -51,7 +50,7 @@ public class MainController implements Initializable  {
 	public MainController MainCon;
 	
 	//* key : 상대방 ID / Value : 컨트롤러  Map에 저장 */ 
-	private Map<String,ChatController> conMap = new HashMap<String, ChatController>();
+	private Map<String,ChatView> conMap = new HashMap<String, ChatView>();
 	private static String str_ID;
 	
 	//* ListView와 동기화 되어있는 리스트 */
@@ -75,7 +74,6 @@ public class MainController implements Initializable  {
 		 *   Cell을 다시 정의. 
 		 *   MyUser : 사용자ID + 프로필이미지 */
 		listV_User.setCellFactory(new Callback<ListView<MyUser>,ListCell<MyUser>>(){
-
 			@Override
 			public ListCell<MyUser> call(ListView<MyUser> param) {
 				ListCell<MyUser> cell = new ListCell<MyUser>() {
@@ -227,7 +225,7 @@ public class MainController implements Initializable  {
 				
 			new Thread(() -> {
 			      Platform.runLater(() -> { 
-			    	  
+			    	  	/*
 			    	  	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/chat.fxml"));
 						ChatController chatCon = null;
 						StackPane root1 = null;
@@ -240,12 +238,17 @@ public class MainController implements Initializable  {
 						chatCon = (ChatController)fxmlLoader.getController();
 						
 						System.out.println("Controller ex: " +  chatCon);
+			    	  	chatCon.Init(ID,str_ID, this);
+			    	  	*/
+			    	  
 						//Map에 ID별로 Controller 저장
-						conMap.put(ID, chatCon);
+			    	  	StackPane root1 =  new StackPane();
+			    	  	ChatView chat = new ChatView(ID,str_ID, this); 
+			    	  	
+						conMap.put(ID, chat);
 						
-						chatCon.Init(ID,str_ID, this);
-						
-						Scene newScene = new Scene(root1);
+						root1.getChildren().add(chat);
+						Scene newScene = new Scene(root1,500, 600 );
 						Stage stage = new Stage();
 						stage.setScene(newScene);
 						stage.getIcons().add(new Image(getClass().getResourceAsStream("../../resources/chat.png")));

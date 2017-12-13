@@ -33,7 +33,6 @@ public class ClientMain extends Application {
 	private static ClientMain main;
 	private Print print  = (String title, String content) -> System.out.println("[" + title + "] : " + content);
 	
-	
 	@Override
 	public void start(Stage primaryStage) {
 		try {

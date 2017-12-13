@@ -51,7 +51,6 @@ public class ServerBackground {
 
 				//여기서 새로운 사용자 쓰레드 클래스 생성해서 소켓정보를 저장한다.
 				Receiver receiver = new Receiver(socket);
-				
 			}
 			
 		} catch (IOException e) {
